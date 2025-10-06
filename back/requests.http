@@ -1,0 +1,67 @@
+# Biến để lưu token sau khi đăng nhập
+@admin_token = 
+
+###
+# ============================================
+# 1. TEST AUTH (Đăng nhập với tài khoản Admin)
+# ============================================
+# @name loginAdmin
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin1@madamelan.com",
+  "password": "adminpassword1"
+}
+###
+
+# Lưu token vào biến
+@admin_token = {{loginAdmin.response.body.token}}
+
+
+###
+# ============================================
+# 2. TEST CHỨC NĂNG THỰC ĐƠN (MENU)
+# ============================================
+
+# 2.1 Lấy tất cả món ăn (Public - Ai cũng xem được)
+GET http://localhost:5000/api/dishes
+
+###
+
+# 2.2 Admin thêm món ăn mới (Private - Cần token)
+POST http://localhost:5000/api/dishes
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "name": "Mì Quảng Ếch",
+  "description": "Một đặc sản Đà Nẵng không thể bỏ qua.",
+  "price": 65000,
+  "imageUrl": "https://i.imgur.com/your-image-4.jpg",
+  "category": "Món Nước"
+}
+
+
+###
+# ============================================
+# 3. TEST CHỨC NĂNG ĐẶT BÀN (BOOKING)
+# ============================================
+
+# 3.1 Khách hàng tạo đặt bàn mới (Public - Không cần token)
+POST http://localhost:5000/api/bookings
+Content-Type: application/json
+
+{
+  "customerName": "Trần Văn B",
+  "customerPhone": "0123456789",
+  "guestCount": 2,
+  "date": "2025-10-12",
+  "time": "20:00",
+  "specialRequest": "Cho tôi bàn yên tĩnh"
+}
+###
+
+# 3.2 Admin xem TẤT CẢ các đơn đặt bàn (Private - Cần token)
+GET http://localhost:5000/api/bookings
+Authorization: Bearer {{admin_token}}
