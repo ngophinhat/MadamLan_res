@@ -57,3 +57,10 @@ npm run dev
 **2. Chạy Frontend:**
 cd frontend
 npm run dev
+**3. Vào trang Admin
+Bấm tổ hợp phím ctrl+alt+l
+tk: admin1@madamelan.com
+mk: adminpassword1
+
+tk: admin2@madamelan.com
+mk: adminpassword2
