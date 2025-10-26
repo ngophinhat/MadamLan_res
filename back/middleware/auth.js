@@ -10,13 +10,13 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Tìm user trong database bằng email
+    //Tìm user trong database bằng email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // 2. DÒNG QUAN TRỌNG: Dùng bcrypt.compare để so sánh mật khẩu người dùng gửi lên
+    // Dùng bcrypt.compare để so sánh mật khẩu người dùng gửi lên
     // với mật khẩu đã được mã hóa trong database.
     const isMatch = await bcrypt.compare(password, user.password);
 
@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // 3. Nếu mật khẩu khớp, tạo JWT token
+    // tạo JWT token
     const payload = {
       id: user.id,
       role: user.role,
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '1d' } // Token có hiệu lực trong 1 ngày
     );
 
-    // 4. Trả token và thông tin user về cho client
+    //Trả token và thông tin user về cho client
     res.json({
       token,
       user: {

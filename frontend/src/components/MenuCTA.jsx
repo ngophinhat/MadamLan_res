@@ -12,7 +12,7 @@ export default function MenuCTA() {
       <div className="relative flex flex-row justify-center items-center gap-10">
         
         <Link
-          to="/dat-ban"
+          to="/dat-cho"
           className="bg-[#8B1E24] text-white hover:text-white px-8 py-3 rounded-lg shadow-lg hover:scale-105 transition duration-300"
         >
           Đặt bàn

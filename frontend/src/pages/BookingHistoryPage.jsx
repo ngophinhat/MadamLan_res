@@ -52,9 +52,6 @@ export default function BookingHistoryPage() {
                                             <p className="font-bold text-lg text-gray-800">
                                                 Ngày: {new Date(booking.date).toLocaleDateString('vi-VN')}
                                             </p>
-                                            <span className={`px-3 py-1 text-xs font-semibold rounded-full ${booking.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                                                {booking.status === 'pending' ? 'Đang chờ' : 'Đã xác nhận'}
-                                            </span>
                                         </div>
                                         <div className="mt-4 border-t pt-4 text-gray-600 space-y-1">
                                             <p><strong>Giờ:</strong> {booking.time}</p>

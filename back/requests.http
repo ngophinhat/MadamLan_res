@@ -65,3 +65,11 @@ Content-Type: application/json
 # 3.2 Admin xem TẤT CẢ các đơn đặt bàn (Private - Cần token)
 GET http://localhost:5000/api/bookings
 Authorization: Bearer {{admin_token}}
+
+
+  {
+Gỏi cá bớp
+Gỏi cá bớp là một món ăn đặc sản miền Trung Việt Nam, nổi bật ở các tỉnh ven biển như Quảng Nam, Quảng Ngãi, Bình Định… Món ăn này kết hợp hương vị tươi ngon của cá bớp với các loại rau, gia vị tạo nên vị chua, cay, ngọt, mặn hài hòa.
+https://images.thegioididong.com/Files/2011/05/05/36532/59_Nau-an-Goi-ca-bop-Phan-Thiet.jpg
+Cocktail
+}, 

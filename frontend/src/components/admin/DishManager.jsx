@@ -81,7 +81,6 @@ export default function DishManager() {
                 <input name="name" value={newDish.name} onChange={handleNewDishChange} placeholder="Tên món ăn" required className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500" />
                 <textarea name="description" value={newDish.description} onChange={handleNewDishChange} placeholder="Mô tả" required className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500" />
                 <input type="number" name="price" value={newDish.price} onChange={handleNewDishChange} placeholder="Giá" required min="0" className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-                <input type="number" name="discount" value={newDish.discount} onChange={handleNewDishChange} placeholder="Giảm giá (%)" min="0" max="100" className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                 <input name="imageUrl" value={newDish.imageUrl} onChange={handleNewDishChange} placeholder="Link hình ảnh" required className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500" />
                 <select name="category" value={newDish.category} onChange={handleNewDishChange} className="w-full px-3 py-2 border rounded bg-gray-700 text-white focus:ring-red-500 focus:border-red-500">
                     <option className="bg-gray-700 text-white">Món chính</option><option className="bg-gray-700 text-white">Khai vị</option><option className="bg-gray-700 text-white">Tráng miệng</option><option className="bg-gray-700 text-white">Món nướng</option><option className="bg-gray-700 text-white">Đồ uống</option><option>Cơm</option>
@@ -108,7 +107,6 @@ export default function DishManager() {
                   <span className="flex-grow text-gray-800">{dish.name}</span>
                   <span className="font-semibold text-right text-gray-800 w-24">{dish.price.toLocaleString('vi-VN')}đ</span>
                   
-                  {/* === SỬA DUY NHẤT Ở DÒNG NÀY === */}
                   <button onClick={() => setSelectedDish(dish)} className="ml-4 bg-gray-800 text-white text-sm py-1 px-3 rounded-md hover:bg-black transition-colors">Chi tiết</button>
                 
                 </li>

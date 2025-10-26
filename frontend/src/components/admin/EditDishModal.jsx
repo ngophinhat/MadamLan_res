@@ -35,11 +35,8 @@ export default function EditDishModal({ dish, onClose, onSave, onDelete }) {
         <h2 className="text-2xl font-bold mb-6 text-gray-800">Chi tiết Món Ăn</h2>
         <div className="space-y-4">
             <input name="name" value={editedDish.name} onChange={handleChange} placeholder="Tên món ăn" required className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500" />
-            <textarea name="description" value={editedDish.description} onChange={handleChange} placeholder="Mô tả" required rows="3" className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500" />
-            
-            <input type="number" name="price" value={editedDish.price} onChange={handleChange} placeholder="Giá" min="0" required className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-            <input type="number" name="discount" value={editedDish.discount} onChange={handleChange} placeholder="Giảm giá (%)" min="0" max="100" className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-            
+            <textarea name="description" value={editedDish.description} onChange={handleChange} placeholder="Mô tả" required rows="3" className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500" />   
+            <input type="number" name="price" value={editedDish.price} onChange={handleChange} placeholder="Giá" min="0" required className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />            
             <input name="imageUrl" value={editedDish.imageUrl} onChange={handleChange} placeholder="Link hình ảnh" required className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500" />
             <select name="category" value={editedDish.category} onChange={handleChange} className="w-full px-3 py-2 border rounded text-gray-900 bg-gray-50 focus:ring-red-500 focus:border-red-500">
                 <option>Món chính</option><option>Khai vị</option><option>Tráng miệng</option><option>Món nướng</option><option>Đồ uống</option><option>Món Nước</option><option>Món Cơm</option><option>Món Chiên</option>
