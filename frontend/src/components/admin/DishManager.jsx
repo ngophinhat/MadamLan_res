@@ -84,14 +84,14 @@ export default function DishManager() {
                 <input type="number" name="discount" value={newDish.discount} onChange={handleNewDishChange} placeholder="Giảm giá (%)" min="0" max="100" className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                 <input name="imageUrl" value={newDish.imageUrl} onChange={handleNewDishChange} placeholder="Link hình ảnh" required className="w-full px-3 py-2 border rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500" />
                 <select name="category" value={newDish.category} onChange={handleNewDishChange} className="w-full px-3 py-2 border rounded bg-gray-700 text-white focus:ring-red-500 focus:border-red-500">
-                    <option className="bg-gray-700 text-white">Món chính</option><option className="bg-gray-700 text-white">Khai vị</option><option className="bg-gray-700 text-white">Tráng miệng</option><option className="bg-gray-700 text-white">Món nướng</option><option className="bg-gray-700 text-white">Đồ uống</option><option>Món Nước</option><option>Món Cơm</option><option>Món Chiên</option>
+                    <option className="bg-gray-700 text-white">Món chính</option><option className="bg-gray-700 text-white">Khai vị</option><option className="bg-gray-700 text-white">Tráng miệng</option><option className="bg-gray-700 text-white">Món nướng</option><option className="bg-gray-700 text-white">Đồ uống</option><option>Cơm</option>
                 </select>
                 <button type="submit" className="w-full bg-[#8B1E24] text-white py-2 rounded hover:bg-[#7f1d1d]">Thêm Món</button>
             </form>
         </div>
         
         <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
-          <div className="flex justify-between items-center mb-4">
+          <div classNameƯ="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold text-gray-800">Danh sách Món Ăn</h2>
             <input 
               type="text" 

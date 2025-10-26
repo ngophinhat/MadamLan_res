@@ -23,7 +23,7 @@ export default function Intro() {
             </p>
             <div className="mt-10">
               <Link
-                to="/gioi-thieu"
+                to="/ve-chung-toi"
                 className="inline-block rounded-md bg-[#8B1E24] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#7f1d1d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B1E24] transition-transform hover:scale-105"
               >
                 Xem thêm về chúng tôi 

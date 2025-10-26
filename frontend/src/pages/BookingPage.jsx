@@ -57,6 +57,7 @@ const handleSubmit = async (e) => {
       date: todayString,
       time: '',
       specialRequest: '',
+      orderedItems:'',
     });
   } catch (error) {
     setMessage('Đã có lỗi xảy ra.');

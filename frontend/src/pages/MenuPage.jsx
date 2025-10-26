@@ -12,12 +12,13 @@ export default function MenuPage() {
   const { addToCart } = useCart();
   const { showNotification } = useNotification();
 
-  // Thêm hàm handleAddToCart vào đây
+  // ✅ Hàm thêm món vào giỏ
   const handleAddToCart = (item) => {
     addToCart(item);
     showNotification(`Đã thêm món "${item.name}"`);
   };
 
+  // ✅ Lấy dữ liệu món ăn và nhóm theo category
   useEffect(() => {
     const fetchAndGroupMenu = async () => {
       try {
@@ -35,7 +36,7 @@ export default function MenuPage() {
 
         setGroupedMenu(grouped);
       } catch (error) {
-        console.error("Lỗi khi tải thực đơn:", error);
+        console.error('Lỗi khi tải thực đơn:', error);
       } finally {
         setLoading(false);
       }
@@ -45,13 +46,40 @@ export default function MenuPage() {
   }, []);
 
   if (loading) {
-    return <div className="text-center py-40 font-serif text-2xl">Đang tải thực đơn...</div>;
+    return (
+      <div className="text-center py-40 font-serif text-2xl">
+        Đang tải thực đơn...
+      </div>
+    );
   }
 
+const categoryOrder = [
+  'Khai vị',
+  'Món chính',
+  'Cơm',
+  'Món nướng',
+  'Tráng miệng',
+  'Đồ uống',
+  'Chưa phân loại'
+];
+const sortedCategories = Object.keys(groupedMenu).sort((a, b) => {
+  const normalize = (str) => str.trim().toLowerCase();
+
+  const indexA = categoryOrder.findIndex(
+    (item) => normalize(item) === normalize(a)
+  );
+  const indexB = categoryOrder.findIndex(
+    (item) => normalize(item) === normalize(b)
+  );
+
+  // Nếu không có trong danh sách → đẩy xuống cuối
+  return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+});
   return (
     <>
       <Header />
       <BannerMenu />
+
       <main className="bg-white w-full">
         <div className="mx-auto py-20 px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -59,32 +87,41 @@ export default function MenuPage() {
               Khám Phá Thực Đơn
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
-              Những hương vị tinh túy được chế biến từ nguyên liệu tươi ngon nhất.
+              Những hương vị tinh túy được chế biến từ nguyên liệu tươi ngon
+              nhất.
             </p>
           </div>
 
-          {Object.keys(groupedMenu).map(category => (
+          {sortedCategories.map((category) => (
             <div key={category} className="mb-16">
+              {/* Tiêu đề danh mục */}
               <div className="text-center mb-10">
                 <h2 className="text-3xl font-serif font-bold text-gray-800">
                   {category}
                 </h2>
                 <div className="mt-2 h-1 w-20 bg-[#8B1E24] mx-auto"></div>
               </div>
-              
-              <div 
+
+              {/* Danh sách món */}
+              <div
                 className="grid gap-6"
-                style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
+                style={{
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                }}
               >
-                {groupedMenu[category].map(item => (
-                  <div key={item._id} className="group text-left bg-stone-50 rounded-lg shadow-sm overflow-hidden flex flex-col">
+                {groupedMenu[category].map((item) => (
+                  <div
+                    key={item._id}
+                    className="group text-left bg-stone-50 rounded-lg shadow-sm overflow-hidden flex flex-col"
+                  >
                     <div className="w-full h-72 bg-gray-200">
-                      <img 
-                        src={item.imageUrl} 
-                        alt={item.name} 
-                        className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105" 
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
+
                     <div className="p-5 flex flex-col flex-grow">
                       <div className="flex justify-between items-start">
                         <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#8B1E24] transition-colors pr-2">
@@ -94,14 +131,17 @@ export default function MenuPage() {
                           {item.price.toLocaleString('vi-VN')}đ
                         </p>
                       </div>
-                      <p className="mt-2 text-sm text-gray-600 font-light flex-grow">{item.description}</p>
-                      
+
+                      <p className="mt-2 text-sm text-gray-600 font-light flex-grow">
+                        {item.description}
+                      </p>
+
                       <div className="mt-4">
-                        <button 
-                            onClick={() => handleAddToCart(item)}
-                            className="w-full bg-[#8B1E24] text-white text-sm py-2 rounded-md hover:bg-[#7f1d1d] transition"
+                        <button
+                          onClick={() => handleAddToCart(item)}
+                          className="w-full bg-[#8B1E24] text-white text-sm py-2 rounded-md hover:bg-[#7f1d1d] transition"
                         >
-                            Chọn món này
+                          Chọn món này
                         </button>
                       </div>
                     </div>
@@ -112,6 +152,7 @@ export default function MenuPage() {
           ))}
         </div>
       </main>
+
       <Footer />
     </>
   );
