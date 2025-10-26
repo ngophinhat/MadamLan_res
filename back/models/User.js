@@ -10,11 +10,12 @@ const userSchema = new mongoose.Schema({
 
 
   // mã hoá mật khẩu
-userSchema.pre('save', async function (next) {
+  userSchema.pre('save', async function (next) {
   // Chỉ hash mật khẩu nếu nó được thay đổi (hoặc là user mới)
   if (!this.isModified('password')) {
     return next();
   }
+  
 
   // mã hoá mật khẩu với độ phức tạp là 10
   const salt = await bcrypt.genSalt(10);

@@ -20,19 +20,25 @@ export default function LoginForm() {
         password,
       });
 
-      // Nếu đăng nhập thành công và có token trả về
       if (response.data.token) {
-        // Lưu token và thông tin user vào localStorage để dùng sau này
-        localStorage.setItem('adminToken', response.data.token);
-        localStorage.setItem('adminUser', JSON.stringify(response.data.user));
-
-        // Chuyển hướng đến trang dashboard của admin
-        // Bạn sẽ tạo trang này ở bước tiếp theo
-        navigate('/admin/dashboard'); 
+        const userRole = response.data.user.role;
+        const userToken = response.data.token;
+        
+        // === LOGIC PHÂN LUỒNG QUAN TRỌNG NHẤT ===
+        if (userRole === 'admin') {
+          // Nếu là admin, lưu token admin và chuyển đến trang dashboard
+          localStorage.setItem('adminToken', userToken);
+          localStorage.setItem('adminUser', JSON.stringify(response.data.user));
+          navigate('/admin/dashboard');
+        } else {
+          // Nếu là customer, lưu token customer và chuyển về trang chủ
+          localStorage.setItem('customerToken', userToken);
+          localStorage.setItem('customerUser', JSON.stringify(response.data.user));
+          navigate('/'); // Chuyển về trang chủ
+        }
       }
     } catch (err) {
-      // Xử lý lỗi đăng nhập
-      setError(err.response?.data?.message || 'Đã có lỗi xảy ra. Vui lòng thử lại.');
+      setError(err.response?.data?.message || 'Đã có lỗi xảy ra.');
     } finally {
       setLoading(false);
     }
@@ -93,4 +99,3 @@ export default function LoginForm() {
     </form>
   );
 }
-
